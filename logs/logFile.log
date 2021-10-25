@@ -1,0 +1,1 @@
+[WARN ] 2021-10-25 22:37:19.388 [main]   CardSchemeValidator - XML-file validation failed.[ERROR] 2021-10-25 22:43:13.767 [main]   CardSchemeValidator - File data/cards.xml doesn't exist. 

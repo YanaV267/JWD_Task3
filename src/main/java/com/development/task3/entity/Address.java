@@ -4,16 +4,14 @@ public class Address {
     private String country;
     private String town;
     private String street;
-    private String houseNumber;
 
     public Address() {
     }
 
-    public Address(String country, String town, String street, String houseNumber) {
+    public Address(String country, String town, String street) {
         this.country = country;
         this.town = town;
         this.street = street;
-        this.houseNumber = houseNumber;
     }
 
     public String getCountry() {
@@ -40,14 +38,6 @@ public class Address {
         this.street = street;
     }
 
-    public String getHouseNumber() {
-        return houseNumber;
-    }
-
-    public void setHouseNumber(String houseNumber) {
-        this.houseNumber = houseNumber;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o)
@@ -57,8 +47,7 @@ public class Address {
         Address address = (Address) o;
         return (country != null ? country.equals(address.country) : address.country == null) &&
                 (town != null ? town.equals(address.town) : address.town == null) &&
-                (street != null ? street.equals(address.street) : address.street == null) &&
-                (houseNumber != null ? houseNumber.equals(address.houseNumber) : address.houseNumber == null);
+                (street != null ? street.equals(address.street) : address.street == null);
     }
 
     @Override
@@ -67,7 +56,6 @@ public class Address {
         result = 31 * result + (country != null ? country.hashCode() : 0);
         result = 31 * result + (town != null ? town.hashCode() : 0);
         result = 31 * result + (street != null ? street.hashCode() : 0);
-        result = 31 * result + (houseNumber != null ? houseNumber.hashCode() : 0);
         return result;
     }
 
@@ -78,7 +66,6 @@ public class Address {
         sb.append("country='").append(country).append('\'');
         sb.append(", town='").append(town).append('\'');
         sb.append(", street='").append(street).append('\'');
-        sb.append(", houseNumber='").append(houseNumber).append('\'');
         sb.append("}");
         return sb.toString();
     }

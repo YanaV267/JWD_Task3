@@ -43,11 +43,11 @@ public class CardStaxBuilder extends AbstractCardBuilder {
                 }
             }
         } catch (IOException exception) {
-            LOGGER.error("Reading of file failed " + exception);
+            LOGGER.error("Reading of file failed ", exception);
         } catch (XMLStreamException exception) {
-            LOGGER.error("Reading of xml data failed " + exception);
+            LOGGER.error("Reading of xml data failed ", exception);
         } catch (CardException exception) {
-            LOGGER.error("Unknown tag " + exception);
+            LOGGER.error("Unknown tag ", exception);
         }
     }
 
@@ -75,15 +75,15 @@ public class CardStaxBuilder extends AbstractCardBuilder {
         String data = getXMLText(reader);
         CardXmlTag currentTag = CardXmlTag.valueOf(name.toUpperCase().replace(HYPHEN, UNDERSCORE));
         switch (currentTag) {
-            case THEME -> postalCard.setThemeType(ThemeType.valueOf(data.toUpperCase()));
+            case THEME -> postalCard.setTheme(ThemeType.valueOf(data.toUpperCase()));
             case ORIGIN_COUNTRY -> postalCard.setCountry(data);
             case YEAR -> postalCard.setYear(Year.parse(data));
             case AUTHOR -> postalCard.setAuthor(data);
             case SENT -> postalCard.setSent(Boolean.parseBoolean(data));
-            case COUNTRY -> getAddressFromXML(reader, postalCard.getDestinationAddress());
+            case DESTINATION_ADDRESS -> getAddressFromXML(reader, postalCard.getDestinationAddress());
             case HOLIDAY -> {
                 GreetingCard greetingCard = (GreetingCard) postalCard;
-                greetingCard.setHolidayType(HolidayType.valueOf(data.toUpperCase().replace(HYPHEN, UNDERSCORE)));
+                greetingCard.setHoliday(HolidayType.valueOf(data.toUpperCase().replace(HYPHEN, UNDERSCORE)));
                 postalCard = greetingCard;
             }
             case COMPANY_NAME -> {
@@ -107,6 +107,7 @@ public class CardStaxBuilder extends AbstractCardBuilder {
                         case COUNTRY -> address.setCountry(data);
                         case TOWN -> address.setTown(data);
                         case STREET -> address.setStreet(data);
+                        default -> throw new CardException("Unknown tag");
                     }
                 }
                 case XMLStreamConstants.END_ELEMENT -> {

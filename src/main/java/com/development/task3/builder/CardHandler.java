@@ -58,7 +58,7 @@ public class CardHandler extends DefaultHandler {
         String data = new String(ch, start, length).trim();
         if (currentTag != null) {
             switch (currentTag) {
-                case THEME -> currentCard.setThemeType(ThemeType.valueOf(data.toUpperCase()));
+                case THEME -> currentCard.setTheme(ThemeType.valueOf(data.toUpperCase()));
                 case ORIGIN_COUNTRY -> currentCard.setCountry(data);
                 case YEAR -> currentCard.setYear(Year.parse(data));
                 case AUTHOR -> currentCard.setAuthor(data);
@@ -68,7 +68,7 @@ public class CardHandler extends DefaultHandler {
                 case STREET -> currentCard.getDestinationAddress().setStreet(data);
                 case HOLIDAY -> {
                     GreetingCard greetingCard = (GreetingCard)currentCard;
-                    greetingCard.setHolidayType(HolidayType.valueOf(data.toUpperCase().replace(HYPHEN, UNDERSCORE)));
+                    greetingCard.setHoliday(HolidayType.valueOf(data.toUpperCase().replace(HYPHEN, UNDERSCORE)));
                     currentCard = greetingCard;
                 }
                 case COMPANY_NAME -> {

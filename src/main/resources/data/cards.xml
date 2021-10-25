@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<postalCards xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://www.example.com/postalCards"
+         xsi:schemaLocation="http://www.example.com/postalCards cards.xsd">
+<greeting-card id="card-1">
+    <theme>scenery</theme>
+    <origin-country>Russia</origin-country>
+    <year>2013</year>
+    <author>Shykshin</author>
+    <sent>true</sent>
+    <destination-address>
+        <country>Russia</country>
+        <town>Moscow</town>
+        <street>Lenina, 189-514</street>
+    </destination-address>
+    <holiday>birthday</holiday>
+</greeting-card>
+    <greeting-card id="card-2">
+        <theme>art</theme>
+        <origin-country>Ukraine</origin-country>
+        <year>1992</year>
+        <author>Almakova</author>
+        <sent>false</sent>
+        <destination-address>
+            <country>Germany</country>
+            <town>Dresden</town>
+            <street>Plattleite, 9-A-21</street>
+        </destination-address>
+        <holiday>new-year</holiday>
+    </greeting-card>
+    <promotional-card id="card-3">
+        <theme>music</theme>
+        <origin-country>Belarus</origin-country>
+        <year>2018</year>
+        <author>Sobalev</author>
+        <sent>true</sent>
+        <destination-address>
+            <country>Poland</country>
+            <town>Gdanks</town>
+            <street>Lanowa, 19-3</street>
+        </destination-address>
+        <company-name>StarStrike</company-name>
+    </promotional-card>
+</postalCards>

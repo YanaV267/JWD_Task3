@@ -3,25 +3,43 @@ package com.development.task3.entity;
 import java.time.Year;
 
 public abstract class AbstractPostalCard {
-    protected ThemeType themeType;
+    protected String id;
+    protected String title;
+    protected ThemeType theme;
     protected String country;
     protected Year year;
     protected String author;
-    protected boolean isSent;
+    protected boolean sent;
     protected Address destinationAddress;
 
     protected AbstractPostalCard() {
-        author = "неизвестен";
-        isSent = false;
+        author = "unknown";
+        sent = false;
         destinationAddress = null;
     }
 
-    public ThemeType getThemeType() {
-        return themeType;
+    public String getId() {
+        return id;
     }
 
-    public void setThemeType(ThemeType themeType) {
-        this.themeType = themeType;
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public ThemeType getTheme() {
+        return theme;
+    }
+
+    public void setTheme(ThemeType theme) {
+        this.theme = theme;
     }
 
     public String getCountry() {
@@ -49,11 +67,11 @@ public abstract class AbstractPostalCard {
     }
 
     public boolean isSent() {
-        return isSent;
+        return sent;
     }
 
     public void setSent(boolean sent) {
-        isSent = sent;
+        this.sent = sent;
     }
 
     public Address getDestinationAddress() {
@@ -71,7 +89,9 @@ public abstract class AbstractPostalCard {
         if (o == null || getClass() != o.getClass())
             return false;
         AbstractPostalCard that = (AbstractPostalCard) o;
-        return isSent == that.isSent && themeType == that.themeType &&
+        return sent == that.sent && theme == that.theme &&
+                (id != null ? id.equals(that.id) : that.id == null) &&
+                (title != null ? title.equals(that.title) : that.title == null) &&
                 (country != null ? country.equals(that.country) : that.country == null) &&
                 (year != null ? year.equals(that.year) : that.country == null) &&
                 (author != null ? author.equals(that.author) : that.author == null) &&
@@ -81,7 +101,9 @@ public abstract class AbstractPostalCard {
     @Override
     public int hashCode() {
         int result = 1;
-        result = result * 31 + themeType.hashCode();
+        result = result * 31 + (id != null ? id.hashCode() : 0);
+        result = result * 31 + (title != null ? title.hashCode() : 0);
+        result = result * 31 + theme.hashCode();
         result = result * 31 + (country != null ? country.hashCode() : 0);
         result = result * 31 + (year != null ? year.hashCode() : 0);
         result = result * 31 + (author != null ? author.hashCode() : 0);
@@ -93,11 +115,13 @@ public abstract class AbstractPostalCard {
     public String toString() {
         StringBuilder sb = new StringBuilder(getClass().getSimpleName());
         sb.append("{");
-        sb.append("themeType=").append(themeType);
+        sb.append("id=").append(id);
+        sb.append(", title=").append(title);
+        sb.append(", theme=").append(theme);
         sb.append(", country=").append(country).append('\'');
         sb.append(", year=").append(year);
         sb.append(", author=").append(author).append('\'');
-        sb.append(", isSent=").append(isSent);
+        sb.append(", sent=").append(sent);
         sb.append(", destinationAddress=").append(destinationAddress);
         sb.append("}");
         return sb.toString();
