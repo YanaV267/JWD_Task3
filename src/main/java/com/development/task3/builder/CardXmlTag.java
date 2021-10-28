@@ -1,8 +1,7 @@
 package com.development.task3.builder;
 
 public enum CardXmlTag {
-    OLD_CARDS,
-    POSTAL_CARD,
+    POSTAL_CARDS,
     GREETING_CARD,
     PROMOTIONAL_CARD,
     DESTINATION_ADDRESS,

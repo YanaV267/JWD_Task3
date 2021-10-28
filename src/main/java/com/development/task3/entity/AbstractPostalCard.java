@@ -13,9 +13,8 @@ public abstract class AbstractPostalCard {
     protected Address destinationAddress;
 
     protected AbstractPostalCard() {
-        author = "unknown";
-        sent = false;
-        destinationAddress = null;
+        title = "unknown";
+        destinationAddress = new Address();
     }
 
     public String getId() {

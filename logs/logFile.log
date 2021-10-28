@@ -1,37 +1,7 @@
 [WARN ] 2021-10-27 11:38:32.273 [main]   CardSchemeValidator - XML-file validation failed.
 [WARN ] 2021-10-27 11:39:07.013 [main]   CardSchemeValidator - XML-file validation failed.
 [WARN ] 2021-10-27 11:40:16.379 [main]   CardSchemeValidator - XML-file validation failed.
-org.xml.sax.SAXParseException: schema_reference.4: Failed to read schema document 'file:/G:/Work/Java%20Web-Development/Task%20execution/Task3/data/cards.xsd', because 1) could not find the document; 2) the document could not be read; 3) the root element of the document is not <xsd:schema>.
-	at com.sun.org.apache.xerces.internal.util.ErrorHandlerWrapper.createSAXParseException(ErrorHandlerWrapper.java:204) ~[?:?]
-	at com.sun.org.apache.xerces.internal.util.ErrorHandlerWrapper.error(ErrorHandlerWrapper.java:135) ~[?:?]
-	at com.sun.org.apache.xerces.internal.impl.XMLErrorReporter.reportError(XMLErrorReporter.java:396) ~[?:?]
-	at com.sun.org.apache.xerces.internal.impl.XMLErrorReporter.reportError(XMLErrorReporter.java:306) ~[?:?]
-	at com.sun.org.apache.xerces.internal.impl.xs.traversers.XSDHandler.reportSchemaErr(XSDHandler.java:4258) ~[?:?]
-	at com.sun.org.apache.xerces.internal.impl.xs.traversers.XSDHandler.reportSchemaError(XSDHandler.java:4241) ~[?:?]
-	at com.sun.org.apache.xerces.internal.impl.xs.traversers.XSDHandler.getSchemaDocument1(XSDHandler.java:2531) ~[?:?]
-	at com.sun.org.apache.xerces.internal.impl.xs.traversers.XSDHandler.getSchemaDocument(XSDHandler.java:2238) ~[?:?]
-	at com.sun.org.apache.xerces.internal.impl.xs.traversers.XSDHandler.parseSchema(XSDHandler.java:588) ~[?:?]
-	at com.sun.org.apache.xerces.internal.impl.xs.XMLSchemaLoader.loadSchema(XMLSchemaLoader.java:617) ~[?:?]
-	at com.sun.org.apache.xerces.internal.impl.xs.XMLSchemaLoader.loadGrammar(XMLSchemaLoader.java:576) ~[?:?]
-	at com.sun.org.apache.xerces.internal.impl.xs.XMLSchemaLoader.loadGrammar(XMLSchemaLoader.java:542) ~[?:?]
-	at com.sun.org.apache.xerces.internal.jaxp.validation.XMLSchemaFactory.newSchema(XMLSchemaFactory.java:276) ~[?:?]
-	at javax.xml.validation.SchemaFactory.newSchema(SchemaFactory.java:669) ~[?:?]
-	at javax.xml.validation.SchemaFactory.newSchema(SchemaFactory.java:685) ~[?:?]
-	at com.development.task3.validator.CardSchemeValidator.checkXMLFile(CardSchemeValidator.java:36) [classes/:?]
-	at com.development.task3.Main.main(Main.java:9) [classes/:?]
-Caused by: java.io.FileNotFoundException: G:\Work\Java Web-Development\Task execution\Task3\data\cards.xsd (Системе не удается найти указанный путь)
-	at java.io.FileInputStream.open0(Native Method) ~[?:?]
-	at java.io.FileInputStream.open(FileInputStream.java:211) ~[?:?]
-	at java.io.FileInputStream.<init>(FileInputStream.java:153) ~[?:?]
-	at java.io.FileInputStream.<init>(FileInputStream.java:108) ~[?:?]
-	at sun.net.www.protocol.file.FileURLConnection.connect(FileURLConnection.java:86) ~[?:?]
-	at sun.net.www.protocol.file.FileURLConnection.getInputStream(FileURLConnection.java:189) ~[?:?]
-	at com.sun.org.apache.xerces.internal.impl.XMLEntityManager.setupCurrentEntity(XMLEntityManager.java:652) ~[?:?]
-	at com.sun.org.apache.xerces.internal.impl.XMLVersionDetector.determineDocVersion(XMLVersionDetector.java:150) ~[?:?]
-	at com.sun.org.apache.xerces.internal.impl.xs.opti.SchemaParsingConfig.parse(SchemaParsingConfig.java:593) ~[?:?]
-	at com.sun.org.apache.xerces.internal.impl.xs.opti.SchemaParsingConfig.parse(SchemaParsingConfig.java:696) ~[?:?]
-	at com.sun.org.apache.xerces.internal.impl.xs.opti.SchemaDOMParser.parse(SchemaDOMParser.java:530) ~[?:?]
-	at com.sun.org.apache.xerces.internal.impl.xs.traversers.XSDHandler.getSchemaDocument(XSDHandler.java:2226) ~[?:?]
-	... 9 more
-[ERROR] 2021-10-27 11:41:06.829 [main]   CardErrorHandler - line 31 | column 35: cvc-id.2: There are multiple occurrences of ID value 'card-3'.
 [ERROR] 2021-10-27 11:41:06.829 [main]   CardErrorHandler - line 31 | column 35: cvc-attribute.3: The value 'card-3' of attribute 'id' on element 'promotional-card' is not valid with respect to its type, 'CardId'.
+[ERROR] 2021-10-28 17:58:15.310 [main]   CardDomBuilder - Reading of file failed
+[ERROR] 2021-10-28 18:07:03.853 [main]   CardStaxBuilder - Reading of file failed 
+[ERROR] 2021-10-28 18:09:43.709 [main]   CardStaxBuilder - Reading of file failed 

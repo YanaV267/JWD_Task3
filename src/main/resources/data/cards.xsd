@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <schema xmlns="http://www.w3.org/2001/XMLSchema"
-        targetNamespace="http://www.example.com/postalCards"
-        xmlns:tns="http://www.example.com/postalCards"
+        targetNamespace="http://www.example.com/postal-cards"
+        xmlns:tns="http://www.example.com/postal-cards"
         elementFormDefault="qualified">
 
-    <element name="postalCards">
+    <element name="postal-cards">
         <complexType>
             <sequence>
-                <element ref="tns:postalCard" minOccurs="3" maxOccurs="unbounded"/>
+                <element ref="tns:postal-card" minOccurs="3" maxOccurs="unbounded"/>
             </sequence>
         </complexType>
     </element>
 
-    <element name="postalCard" type="tns:Card" abstract="true"/>
-    <element name="greeting-card" type="tns:GreetingCard" substitutionGroup="tns:postalCard"/>
-    <element name="promotional-card" type="tns:PromotionalCard" substitutionGroup="tns:postalCard"/>
+    <element name="postal-card" type="tns:Card" abstract="true"/>
+    <element name="greeting-card" type="tns:GreetingCard" substitutionGroup="tns:postal-card"/>
+    <element name="promotional-card" type="tns:PromotionalCard" substitutionGroup="tns:postal-card"/>
 
     <complexType name="Card">
         <sequence>
@@ -88,7 +88,7 @@
 
     <simpleType name="Street">
         <restriction base="string">
-            <pattern value="[A-Z].[a-z]{2,30}, \d{1,4}((-[\dA-Z])?-\d{1,3})?"/>
+            <pattern value="[A-ZА-Я].[а-яa-z]{2,30}, \d{1,4}(-[\dA-Z])?(-\d{1,3})?"/>
         </restriction>
     </simpleType>
 </schema>

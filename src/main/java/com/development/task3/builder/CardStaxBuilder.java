@@ -9,8 +9,10 @@ import javax.xml.stream.XMLInputFactory;
 import javax.xml.stream.XMLStreamConstants;
 import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamReader;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.time.Year;
 
 import static com.development.task3.builder.CardXmlTag.*;
@@ -26,33 +28,35 @@ public class CardStaxBuilder extends AbstractCardBuilder {
         inputFactory = XMLInputFactory.newInstance();
     }
 
-
     @Override
     public void buildSetCards(String filename) {
-        try (FileInputStream inputStream = new FileInputStream(filename)) {
+        try (FileInputStream inputStream = new FileInputStream(new File(getClass().getClassLoader().getResource(filename).toURI()))) {
             XMLStreamReader reader = inputFactory.createXMLStreamReader(inputStream);
             while (reader.hasNext()) {
                 int type = reader.next();
                 if (type == XMLStreamConstants.START_ELEMENT) {
                     String name = reader.getLocalName();
-                    if (name.equals(CardXmlTag.GREETING_CARD.getTagName())
-                            || name.equals(CardXmlTag.PROMOTIONAL_CARD.getTagName())) {
+                    if (name.equals(CardXmlTag.GREETING_CARD.getTagName()) || name.equals(CardXmlTag.PROMOTIONAL_CARD.getTagName())) {
                         AbstractPostalCard postalCard = buildPostalCard(reader);
                         postalCards.add(postalCard);
                     }
                 }
             }
-        } catch (IOException exception) {
-            LOGGER.error("Reading of file failed ", exception);
+        } catch (IOException | URISyntaxException exception) {
+            LOGGER.error("Reading of file failed ");
         } catch (XMLStreamException exception) {
-            LOGGER.error("Reading of xml data failed ", exception);
+            LOGGER.error("Reading of xml data failed ");
         } catch (CardException exception) {
-            LOGGER.error("Unknown tag ", exception);
+            LOGGER.error("Unknown tag ");
         }
     }
 
     private AbstractPostalCard buildPostalCard(XMLStreamReader reader) throws XMLStreamException, CardException {
         AbstractPostalCard postalCard = reader.getLocalName().equals(GREETING_CARD.getTagName()) ? new GreetingCard() : new PromotionalCard();
+        postalCard.setId(reader.getAttributeValue(null, "id"));
+        if (reader.getAttributeValue(null, "title") != null) {
+            postalCard.setTitle(reader.getAttributeValue(null, "title"));
+        }
         while (reader.hasNext()) {
             int type = reader.next();
             switch (type) {
@@ -64,7 +68,6 @@ public class CardStaxBuilder extends AbstractCardBuilder {
                         return postalCard;
                     }
                 }
-                default -> throw new CardException("Unknown tag");
             }
         }
         return postalCard;
@@ -84,14 +87,12 @@ public class CardStaxBuilder extends AbstractCardBuilder {
             case HOLIDAY -> {
                 GreetingCard greetingCard = (GreetingCard) postalCard;
                 greetingCard.setHoliday(HolidayType.valueOf(data.toUpperCase().replace(HYPHEN, UNDERSCORE)));
-                postalCard = greetingCard;
             }
             case COMPANY_NAME -> {
                 PromotionalCard promotionalCard = (PromotionalCard) postalCard;
                 promotionalCard.setCompanyName(data);
-                postalCard = promotionalCard;
             }
-            default -> throw new CardException("Unknown tag");
+            default -> throw new CardException("Unknown tag: " + currentTag);
         }
     }
 
@@ -103,11 +104,11 @@ public class CardStaxBuilder extends AbstractCardBuilder {
             switch (type) {
                 case XMLStreamConstants.START_ELEMENT -> {
                     CardXmlTag currentTag = CardXmlTag.valueOf(name.toUpperCase().replace(HYPHEN, UNDERSCORE));
-                    switch(currentTag) {
+                    switch (currentTag) {
                         case COUNTRY -> address.setCountry(data);
                         case TOWN -> address.setTown(data);
                         case STREET -> address.setStreet(data);
-                        default -> throw new CardException("Unknown tag");
+                        default -> throw new CardException("Unknown tag: " + currentTag);
                     }
                 }
                 case XMLStreamConstants.END_ELEMENT -> {
@@ -115,7 +116,7 @@ public class CardStaxBuilder extends AbstractCardBuilder {
                         return;
                     }
                 }
-                default -> throw new CardException("Unknown tag");
+                default -> throw new CardException("Unknown tag: " + type);
             }
         }
     }

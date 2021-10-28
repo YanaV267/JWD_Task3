@@ -10,30 +10,30 @@ import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 import java.io.IOException;
 
-public class CardSaxBuilder extends AbstractCardBuilder{
+public class CardSaxBuilder extends AbstractCardBuilder {
     private static final Logger LOGGER = LogManager.getLogger();
     private final SAXParserFactory factory;
 
-    public CardSaxBuilder(){
+    public CardSaxBuilder() {
         factory = SAXParserFactory.newInstance();
     }
 
     @Override
-    public void buildSetCards(String filename){
+    public void buildSetCards(String filename) {
         try {
             SAXParser parser = factory.newSAXParser();
             XMLReader reader = parser.getXMLReader();
             CardHandler handler = new CardHandler();
             reader.setContentHandler(handler);
             reader.setErrorHandler(new CardErrorHandler());
-            reader.parse(filename);
+            reader.parse(getClass().getClassLoader().getResource(filename).getPath());
             postalCards = handler.getPostalCards();
         } catch (ParserConfigurationException exception) {
-            LOGGER.error("File parser configuration failed ", exception);
+            LOGGER.error("File parser configuration failed ");
         } catch (SAXException exception) {
-            LOGGER.error("SAX parser execution failed ", exception);
+            LOGGER.error("SAX parser execution failed ");
         } catch (IOException exception) {
-            LOGGER.error("Reading of file failed ", exception);
+            LOGGER.error("Reading of file failed ");
         }
     }
 }

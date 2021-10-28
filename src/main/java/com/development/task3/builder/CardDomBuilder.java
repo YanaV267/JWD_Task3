@@ -29,14 +29,14 @@ public class CardDomBuilder extends AbstractCardBuilder {
         try {
             documentBuilder = documentBuilderFactory.newDocumentBuilder();
         } catch (ParserConfigurationException exception) {
-            LOGGER.error("Parser configuration failed", exception);
+            LOGGER.error("Parser configuration failed");
         }
     }
 
     @Override
     public void buildSetCards(String filename) {
         try {
-            Document document = documentBuilder.parse(filename);
+            Document document = documentBuilder.parse(getClass().getClassLoader().getResource(filename).getPath());
             Element root = document.getDocumentElement();
             NodeList cardList = root.getElementsByTagName(GREETING_CARD.getTagName());
             for (int i = 0; i < cardList.getLength(); i++) {
@@ -51,14 +51,19 @@ public class CardDomBuilder extends AbstractCardBuilder {
                 postalCards.add(postalCard);
             }
         } catch (SAXException exception) {
-            LOGGER.error("File parsing failed", exception);
+            LOGGER.error("File parsing failed");
         } catch (IOException exception) {
-            LOGGER.error("Reading of file failed", exception);
+            LOGGER.error("Reading of file failed");
         }
     }
 
     public AbstractPostalCard buildCard(Element cardElement) {
         AbstractPostalCard postalCard = cardElement.getTagName().equals(GREETING_CARD.getTagName()) ? new GreetingCard() : new PromotionalCard();
+
+        postalCard.setId(cardElement.getAttribute("id"));
+        if (cardElement.getAttribute("title") != null) {
+            postalCard.setTitle(cardElement.getAttribute("title"));
+        }
 
         String data = getElementTextContent(cardElement, THEME.getTagName());
         postalCard.setTheme(ThemeType.valueOf(data.toUpperCase()));
@@ -82,12 +87,10 @@ public class CardDomBuilder extends AbstractCardBuilder {
         if (postalCard instanceof GreetingCard greetingCard) {
             data = getElementTextContent(cardElement, HOLIDAY.getTagName());
             greetingCard.setHoliday(HolidayType.valueOf(data.toUpperCase().replace(HYPHEN, UNDERSCORE)));
-            postalCard = greetingCard;
         } else {
             data = getElementTextContent(cardElement, COMPANY_NAME.getTagName());
             PromotionalCard promotionalCard = (PromotionalCard) postalCard;
             promotionalCard.setCompanyName(data);
-            postalCard = promotionalCard;
         }
         return postalCard;
     }

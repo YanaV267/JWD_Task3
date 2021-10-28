@@ -2,7 +2,6 @@ package com.development.task3.builder;
 
 import com.development.task3.entity.*;
 import org.xml.sax.Attributes;
-import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
 import java.time.Year;
@@ -31,21 +30,27 @@ public class CardHandler extends DefaultHandler {
     }
 
     @Override
-    public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
+    public void startElement(String uri, String localName, String qName, Attributes attributes) {
         String greetingCardTag = GREETING_CARD.getTagName();
         String promotionalCardTag = PROMOTIONAL_CARD.getTagName();
-        if (greetingCardTag.equals(qName) || promotionalCardTag.equals(qName)) {
-            currentCard = greetingCardTag.equals(qName) ? new GreetingCard() : new PromotionalCard();
-        } else {
-            CardXmlTag temp = valueOf(qName.toUpperCase().replace(HYPHEN, UNDERSCORE));
-            if (withText.contains(temp)) {
-                currentTag = temp;
+        if (!qName.toUpperCase().replace(HYPHEN, UNDERSCORE).equals(POSTAL_CARDS)) {
+            if (greetingCardTag.equals(qName) || promotionalCardTag.equals(qName)) {
+                currentCard = greetingCardTag.equals(qName) ? new GreetingCard() : new PromotionalCard();
+                currentCard.setId(attributes.getValue("id"));
+                if (attributes.getValue("title") != null) {
+                    currentCard.setTitle(attributes.getValue("title"));
+                }
+            } else {
+                CardXmlTag temp = valueOf(qName.toUpperCase().replace(HYPHEN, UNDERSCORE));
+                if (withText.contains(temp)) {
+                    currentTag = temp;
+                }
             }
         }
     }
 
     @Override
-    public void endElement(String uri, String localName, String qName) throws SAXException {
+    public void endElement(String uri, String localName, String qName) {
         String greetingCardTag = GREETING_CARD.getTagName();
         String promotionalCardTag = PROMOTIONAL_CARD.getTagName();
         if (greetingCardTag.equals(qName) || promotionalCardTag.equals(qName)) {
@@ -54,7 +59,7 @@ public class CardHandler extends DefaultHandler {
     }
 
     @Override
-    public void characters(char[] ch, int start, int length) throws SAXException {
+    public void characters(char[] ch, int start, int length) {
         String data = new String(ch, start, length).trim();
         if (currentTag != null) {
             switch (currentTag) {
@@ -67,14 +72,12 @@ public class CardHandler extends DefaultHandler {
                 case TOWN -> currentCard.getDestinationAddress().setTown(data);
                 case STREET -> currentCard.getDestinationAddress().setStreet(data);
                 case HOLIDAY -> {
-                    GreetingCard greetingCard = (GreetingCard)currentCard;
+                    GreetingCard greetingCard = (GreetingCard) currentCard;
                     greetingCard.setHoliday(HolidayType.valueOf(data.toUpperCase().replace(HYPHEN, UNDERSCORE)));
-                    currentCard = greetingCard;
                 }
                 case COMPANY_NAME -> {
-                    PromotionalCard promotionalCard = (PromotionalCard)currentCard;
+                    PromotionalCard promotionalCard = (PromotionalCard) currentCard;
                     promotionalCard.setCompanyName(data);
-                    currentCard = promotionalCard;
                 }
                 default -> throw new EnumConstantNotPresentException(
                         currentTag.getDeclaringClass(), currentTag.name());
