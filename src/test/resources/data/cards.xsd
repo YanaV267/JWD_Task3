@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+        targetNamespace="http://www.example.com/postal-cards"
+        xmlns:tns="http://www.example.com/postal-cards"
+        elementFormDefault="qualified">
+
+    <element name="postal-cards">
+        <complexType>
+            <sequence>
+                <element ref="tns:postal-card" minOccurs="3" maxOccurs="unbounded"/>
+            </sequence>
+        </complexType>
+    </element>
+
+    <element name="postal-card" type="tns:Card" abstract="true"/>
+    <element name="greeting-card" type="tns:GreetingCard" substitutionGroup="tns:postal-card"/>
+    <element name="promotional-card" type="tns:PromotionalCard" substitutionGroup="tns:postal-card"/>
+
+    <complexType name="Card">
+        <sequence>
+            <element name="theme" type="tns:ThemeType"/>
+            <element name="origin-country" type="string"/>
+            <element name="year" type="gYear"/>
+            <element name="author" type="string" default="unknown"/>
+            <element name="sent" type="boolean" default="false"/>
+            <element name="destination-address" type="tns:Address"/>
+        </sequence>
+        <attribute name="id" type="tns:CardId" use="required"/>
+        <attribute name="title" type="string" use="optional"/>
+    </complexType>
+
+    <complexType name="GreetingCard">
+        <complexContent>
+            <extension base="tns:Card">
+                <sequence>
+                    <element name="holiday" type="tns:Holiday"/>
+                </sequence>
+            </extension>
+        </complexContent>
+    </complexType>
+
+    <complexType name="PromotionalCard">
+        <complexContent>
+            <extension base="tns:Card">
+                <sequence>
+                    <element name="company-name" type="string"/>
+                </sequence>
+            </extension>
+        </complexContent>
+    </complexType>
+
+    <simpleType name="CardId">
+        <restriction base="ID">
+            <pattern value="card-\d{1,10}"/>
+        </restriction>
+    </simpleType>
+
+    <simpleType name="ThemeType">
+        <restriction base="string">
+            <enumeration value="scenery"/>
+            <enumeration value="animal"/>
+            <enumeration value="people"/>
+            <enumeration value="religion"/>
+            <enumeration value="history"/>
+            <enumeration value="sport"/>
+            <enumeration value="architecture"/>
+            <enumeration value="music"/>
+            <enumeration value="art"/>
+        </restriction>
+    </simpleType>
+
+    <simpleType name="Holiday">
+        <restriction base="string">
+            <enumeration value="new-year"/>
+            <enumeration value="christmas"/>
+            <enumeration value="birthday"/>
+            <enumeration value="wedding"/>
+        </restriction>
+    </simpleType>
+
+    <complexType name="Address">
+        <sequence>
+            <element name="country" type="string"/>
+            <element name="town" type="string"/>
+            <element name="street" type="tns:Street"/>
+        </sequence>
+    </complexType>
+
+    <simpleType name="Street">
+        <restriction base="string">
+            <pattern value="[A-ZА-Я].[а-яa-z]{2,30}, \d{1,4}(-[\dA-Z])?(-\d{1,3})?"/>
+        </restriction>
+    </simpleType>
+</schema>

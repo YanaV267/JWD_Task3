@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<postal-cards xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xmlns="http://www.example.com/postal-cards"
+             xsi:schemaLocation="http://www.example.com/postal-cards cards.xsd">
+    <greeting-card id="card-1" title="Летняя идиллия">
+        <theme>scenery</theme>
+        <origin-country>Russia</origin-country>
+        <year>2013</year>
+        <author>Шукшин</author>
+        <sent>true</sent>
+        <destination-address>
+            <country>Russia</country>
+            <town>Moscow</town>
+            <street>Ленина, 189-514</street>
+        </destination-address>
+        <holiday>birthday</holiday>
+    </greeting-card>
+    <greeting-card id="card-2">
+        <theme>art</theme>
+        <origin-country>Ukraine</origin-country>
+        <year>1992</year>
+        <author>Алмакова</author>
+        <sent>false</sent>
+        <destination-address>
+            <country>Germany</country>
+            <town>Dresden</town>
+            <street>Plattleite, 9-A-21</street>
+        </destination-address>
+        <holiday>new-year</holiday>
+    </greeting-card>
+    <promotional-card id="card-3">
+        <theme>music</theme>
+        <origin-country>Belarus</origin-country>
+        <year>2018</year>
+        <author>Соболев</author>
+        <sent>true</sent>
+        <destination-address>
+            <country>Poland</country>
+            <town>Gdanks</town>
+            <street>Lanowa, 19-3</street>
+        </destination-address>
+        <company-name>StarStrike</company-name>
+    </promotional-card>
+    <promotional-card id="card-4">
+        <theme>art</theme>
+        <origin-country>Belarus</origin-country>
+        <year>2013</year>
+        <author>Емельянов</author>
+        <sent>false</sent>
+        <destination-address>
+            <country>Lithuania</country>
+            <town>Vilnus</town>
+            <street>Kirtumy, 39-1</street>
+        </destination-address>
+        <company-name>Olivian</company-name>
+    </promotional-card>
+    <greeting-card id="card-5" title="Sonnenaufgang">
+        <theme>religion</theme>
+        <origin-country>Germany</origin-country>
+        <year>1809</year>
+        <author>Swolan</author>
+        <sent>true</sent>
+        <destination-address>
+            <country>Germany</country>
+            <town>Berlin</town>
+            <street>Strew, 72-C-2</street>
+        </destination-address>
+        <holiday>new-year</holiday>
+    </greeting-card>
+    <promotional-card id="card-6">
+        <theme>animal</theme>
+        <origin-country>Russia</origin-country>
+        <year>2010</year>
+        <author>Антонова</author>
+        <sent>true</sent>
+        <destination-address>
+            <country>Belarus</country>
+            <town>Витебск</town>
+            <street>Гагарина, 43-1-89</street>
+        </destination-address>
+        <company-name>Bellagio</company-name>
+    </promotional-card>
+    <greeting-card title="СемьЯ" id="card-7">
+        <theme>animal</theme>
+        <origin-country>Russia</origin-country>
+        <year>2002</year>
+        <author>Леонов</author>
+        <sent>true</sent>
+        <destination-address>
+            <country>Italy</country>
+            <town>Monaco</town>
+            <street>Ligure, 2-A</street>
+        </destination-address>
+        <holiday>birthday</holiday>
+    </greeting-card>
+    <greeting-card id="card-8">
+        <theme>art</theme>
+        <origin-country>Ukraine</origin-country>
+        <year>1992</year>
+        <author>Алмакова</author>
+        <sent>false</sent>
+        <destination-address>
+            <country>Germany</country>
+            <town>Dresden</town>
+            <street>Plattleite, 9-A-21</street>
+        </destination-address>
+        <holiday>new-year</holiday>
+    </greeting-card>
+    <greeting-card id="card-9" title="Warriors">
+        <theme>history</theme>
+        <origin-country>Latvia</origin-country>
+        <year>1987</year>
+        <author>Савельев</author>
+        <sent>true</sent>
+        <destination-address>
+            <country>Belarus</country>
+            <town>Минск</town>
+            <street>Победителей, 124-78</street>
+        </destination-address>
+        <holiday>wedding</holiday>
+    </greeting-card>
+    <promotional-card id="card-10">
+        <theme>music</theme>
+        <origin-country>Belarus</origin-country>
+        <year>2018</year>
+        <author>Соболев</author>
+        <sent>true</sent>
+        <destination-address>
+            <country>Poland</country>
+            <town>Gdanks</town>
+            <street>Lanowa, 19-3</street>
+        </destination-address>
+        <company-name>StarStrike</company-name>
+    </promotional-card>
+    <promotional-card id="card-11" title="wild life">
+        <theme>animal</theme>
+        <origin-country>Belarus</origin-country>
+        <year>2017</year>
+        <author>Ульянова</author>
+        <sent>true</sent>
+        <destination-address>
+            <country>Germany</country>
+            <town>Berlin</town>
+            <street>Hauptstrasse, 5-14</street>
+        </destination-address>
+        <company-name>SeasonS</company-name>
+    </promotional-card>
+    <greeting-card id="card-12">
+        <theme>art</theme>
+        <origin-country>Belarus</origin-country>
+        <year>2007</year>
+        <author>Добрушевский</author>
+        <sent>true</sent>
+        <destination-address>
+            <country>Germany</country>
+            <town>Dresden</town>
+            <street>Plattleite, 9-A-21</street>
+        </destination-address>
+        <holiday>new-year</holiday>
+    </greeting-card>
+    <promotional-card title="United" id="card-13">
+        <theme>people</theme>
+        <origin-country>Poland</origin-country>
+        <year>2018</year>
+        <author>Plotnikowski</author>
+        <sent>true</sent>
+        <destination-address>
+            <country>Poland</country>
+            <town>Wroclaw</town>
+            <street>Laskowize, 48</street>
+        </destination-address>
+        <company-name>DobraZ</company-name>
+    </promotional-card>
+    <greeting-card id="card-14">
+        <theme>music</theme>
+        <origin-country>Ukraine</origin-country>
+        <year>2019</year>
+        <author>Алмакова</author>
+        <sent>false</sent>
+        <destination-address>
+            <country>Germany</country>
+            <town>Dresden</town>
+            <street>Hauptstrasse, 21</street>
+        </destination-address>
+        <holiday>wedding</holiday>
+    </greeting-card>
+    <promotional-card id="card-15">
+        <theme>art</theme>
+        <origin-country>Kazakhstan</origin-country>
+        <year>2018</year>
+        <author>Абишев</author>
+        <sent>true</sent>
+        <destination-address>
+            <country>Russia</country>
+            <town>Иркутск</town>
+            <street>Первомайская, 98-43</street>
+        </destination-address>
+        <company-name>Pozdravitel</company-name>
+    </promotional-card>
+    <greeting-card id="card-16">
+        <theme>religion</theme>
+        <origin-country>Ukraine</origin-country>
+        <year>2019</year>
+        <author>Алмакова</author>
+        <sent>true</sent>
+        <destination-address>
+            <country>Russia</country>
+            <town>Екатеринбург</town>
+            <street>Машерова, 11-A-8</street>
+        </destination-address>
+        <holiday>christmas</holiday>
+    </greeting-card>
+</postal-cards>
