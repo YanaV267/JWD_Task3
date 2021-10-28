@@ -12,16 +12,19 @@ public class CardErrorHandler implements ErrorHandler {
     @Override
     public void warning(SAXParseException exception) throws SAXException {
         LOGGER.warn(getErrorPosition(exception) + ": " + exception.getMessage());
+        throw exception;
     }
 
     @Override
     public void error(SAXParseException exception) throws SAXException {
         LOGGER.error(getErrorPosition(exception) + ": " + exception.getMessage());
+        throw exception;
     }
 
     @Override
     public void fatalError(SAXParseException exception) throws SAXException {
         LOGGER.fatal(getErrorPosition(exception) + ": " + exception.getMessage());
+        throw exception;
     }
 
     private String getErrorPosition(SAXParseException exception) {

@@ -39,7 +39,7 @@ public class CardSchemeValidator {
             validator.setErrorHandler(new CardErrorHandler());
             validator.validate(source);
         } catch (SAXException exception) {
-            LOGGER.warn("XML-file validation failed.");
+            LOGGER.warn("XML-file validation failed.", exception);
             return false;
         } catch (IOException exception) {
             LOGGER.error("File " + filename + " doesn't exist. ");
