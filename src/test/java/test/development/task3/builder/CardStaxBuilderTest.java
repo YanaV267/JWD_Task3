@@ -1,7 +1,6 @@
 package test.development.task3.builder;
 
 import com.development.task3.builder.CardStaxBuilder;
-import com.development.task3.entity.AbstractPostalCard;
 import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
