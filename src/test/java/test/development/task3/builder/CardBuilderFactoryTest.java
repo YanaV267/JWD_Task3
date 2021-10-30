@@ -24,7 +24,7 @@ public class CardBuilderFactoryTest {
         int expected = 16;
         cardDomBuilder.buildSetCards("data/cards.xml");
         int actual = cardDomBuilder.getPostalCards().size();
-        Assert.assertEquals(actual, expected, "data reading with SAX builder is invalid");
+        Assert.assertEquals(actual, expected, "data reading with DOM builder is invalid");
     }
 
     @Test
@@ -40,6 +40,6 @@ public class CardBuilderFactoryTest {
         int expected = 16;
         cardStaxBuilder.buildSetCards("data/cards.xml");
         int actual = cardStaxBuilder.getPostalCards().size();
-        Assert.assertEquals(actual, expected, "data reading with SAX builder is invalid");
+        Assert.assertEquals(actual, expected, "data reading with StAX builder is invalid");
     }
 }
