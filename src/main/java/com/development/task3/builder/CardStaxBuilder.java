@@ -43,11 +43,11 @@ public class CardStaxBuilder extends AbstractCardBuilder {
                 }
             }
         } catch (IOException | URISyntaxException exception) {
-            LOGGER.error("Reading of file failed ");
+            LOGGER.error("Reading of file failed. " + exception);
         } catch (XMLStreamException exception) {
-            LOGGER.error("Reading of xml data failed ");
+            LOGGER.error("Reading of xml data failed. " + exception);
         } catch (CardException exception) {
-            LOGGER.error("Unknown tag ");
+            LOGGER.error("XML file contains unknown tag. " + exception);
         }
     }
 
@@ -92,7 +92,10 @@ public class CardStaxBuilder extends AbstractCardBuilder {
                 PromotionalCard promotionalCard = (PromotionalCard) postalCard;
                 promotionalCard.setCompanyName(data);
             }
-            default -> throw new CardException("Unknown tag: " + currentTag);
+            default -> {
+                LOGGER.error("Unknown tag: " + currentTag);
+                throw new CardException("Unknown tag: " + currentTag);
+            }
         }
     }
 
@@ -108,7 +111,10 @@ public class CardStaxBuilder extends AbstractCardBuilder {
                         case COUNTRY -> address.setCountry(data);
                         case TOWN -> address.setTown(data);
                         case STREET -> address.setStreet(data);
-                        default -> throw new CardException("Unknown tag: " + currentTag);
+                        default -> {
+                            LOGGER.error("Unknown tag: " + currentTag);
+                            throw new CardException("Unknown tag: " + currentTag);
+                        }
                     }
                 }
                 case XMLStreamConstants.END_ELEMENT -> {
@@ -116,7 +122,10 @@ public class CardStaxBuilder extends AbstractCardBuilder {
                         return;
                     }
                 }
-                default -> throw new CardException("Unknown tag: " + type);
+                default -> {
+                    LOGGER.error("Unknown element: " + type);
+                    throw new CardException("Unknown element: " + type);
+                }
             }
         }
     }

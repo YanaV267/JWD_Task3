@@ -79,8 +79,7 @@ public class CardHandler extends DefaultHandler {
                     PromotionalCard promotionalCard = (PromotionalCard) currentCard;
                     promotionalCard.setCompanyName(data);
                 }
-                default -> throw new EnumConstantNotPresentException(
-                        currentTag.getDeclaringClass(), currentTag.name());
+                default -> throw new EnumConstantNotPresentException(currentTag.getDeclaringClass(), currentTag.name());
             }
             currentTag = null;
         }

@@ -29,11 +29,11 @@ public class CardSaxBuilder extends AbstractCardBuilder {
             reader.parse(getClass().getClassLoader().getResource(filename).getPath());
             postalCards = handler.getPostalCards();
         } catch (ParserConfigurationException exception) {
-            LOGGER.error("File parser configuration failed ");
+            LOGGER.error("File parser configuration failed. " + exception);
         } catch (SAXException exception) {
-            LOGGER.error("SAX parser execution failed ");
+            LOGGER.error("SAX parser execution failed. " + exception);
         } catch (IOException exception) {
-            LOGGER.error("Reading of file failed ");
+            LOGGER.error("Reading of file failed . " + exception);
         }
     }
 }

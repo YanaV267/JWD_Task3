@@ -29,7 +29,7 @@ public class CardDomBuilder extends AbstractCardBuilder {
         try {
             documentBuilder = documentBuilderFactory.newDocumentBuilder();
         } catch (ParserConfigurationException exception) {
-            LOGGER.error("Parser configuration failed");
+            LOGGER.error("Parser configuration failed. " + exception);
         }
     }
 
@@ -51,9 +51,9 @@ public class CardDomBuilder extends AbstractCardBuilder {
                 postalCards.add(postalCard);
             }
         } catch (SAXException exception) {
-            LOGGER.error("File parsing failed");
+            LOGGER.error("File parsing failed. " + exception);
         } catch (IOException exception) {
-            LOGGER.error("Reading of file failed");
+            LOGGER.error("Reading of file failed. " + exception);
         }
     }
 
